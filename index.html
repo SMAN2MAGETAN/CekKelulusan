@@ -1,6 +1,20 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
+   <meta charset="UTF-8">
+  <title>Efek Confetti</title>
+  <style>
+    body {
+      text-align: center;
+      margin-top: 100px;
+      font-family: Arial, sans-serif;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  </style>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Kelulusan SMA 2 Magetan 2025</title>
@@ -65,12 +79,26 @@
   </style>
 </head>
 <body>
+  
+
+  <!-- Tambahkan library confetti dari CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+  <script>
+    function confettiEffect() {
+      confetti({
+        particleCount: 150,
+        spread: 70,
+        origin: { y: 0.6 }
+      });
+    }
+  </script>
   <div class="container">
     <img src="LOGO.jpg" alt="Logo SMA 2 Magetan" class="logo" />
     <h1>Pengumuman Kelulusan<br>2025</h1>
     <p>Masukkan NIS Anda untuk melihat hasil</p>
     <input type="text" id="nisnInput" placeholder="Contoh: 1234567890" />
-    <button onclick="cekKelulusan()">Cek Kelulusan</button>
+    <button onclick="confettiEffect()">Cek Kelulusan!</button>
     <div class="result" id="hasil"></div>
     <footer>© SMA Negeri 2 Magetan 2025</footer>
   </div>
