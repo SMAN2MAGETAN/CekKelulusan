@@ -1,6 +1,23 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
+  //efek kembang api
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background: #f0f0f0;
+    }
+
+    canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+    }
+  </style>
+  
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Kelulusan SMA 2 Magetan 2025</title>
@@ -65,6 +82,66 @@
   </style>
 </head>
 <body>
+  //efek kembang api
+<canvas id="confetti-canvas"></canvas>
+
+  <script>
+    const canvas = document.getElementById('confetti-canvas');
+    const ctx = canvas.getContext('2d');
+    let confetti = [];
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    function createConfettiPiece() {
+      return {
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height - canvas.height,
+        r: Math.random() * 6 + 4,
+        d: Math.random() * 10 + 5,
+        color: `hsl(${Math.random() * 360}, 100%, 50%)`,
+        tilt: Math.random() * 10 - 10,
+        tiltAngleIncrement: Math.random() * 0.07 + 0.05,
+        tiltAngle: 0
+      };
+    }
+
+    for (let i = 0; i < 150; i++) {
+      confetti.push(createConfettiPiece());
+    }
+
+    function drawConfetti() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      confetti.forEach((c, i) => {
+        c.tiltAngle += c.tiltAngleIncrement;
+        c.y += (Math.cos(c.d) + 3 + c.r / 2) / 2;
+        c.tilt = Math.sin(c.tiltAngle) * 15;
+
+        ctx.beginPath();
+        ctx.lineWidth = c.r;
+        ctx.strokeStyle = c.color;
+        ctx.moveTo(c.x + c.tilt + c.r / 2, c.y);
+        ctx.lineTo(c.x + c.tilt, c.y + c.tilt + c.r / 2);
+        ctx.stroke();
+      });
+
+      confetti = confetti.filter(c => c.y < canvas.height);
+
+      while (confetti.length < 150) {
+        confetti.push(createConfettiPiece());
+      }
+
+      requestAnimationFrame(drawConfetti);
+    }
+
+    drawConfetti();
+  </script>
+  //akir efek
   <div class="container">
     <img src="LOGO.jpg" alt="Logo SMA 2 Magetan" class="logo" />
     <h1>Pengumuman Kelulusan<br>2025</h1>
