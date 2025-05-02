@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kelulusan SMA 2 Magetan 2025</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      background-color: #fff8f0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .container {
+      text-align: center;
+      padding: 30px;
+      background-color: #ffffff;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      max-width: 400px;
+      width: 100%;
+    }
+
+    .logo {
+      width: 100px;
+      margin-bottom: 10px;
+    }
+
+    h1 {
+      color: #e65c00;
+      margin-bottom: 10px;
+    }
+
+    input, button {
+      padding: 12px;
+      margin: 10px 0;
+      width: 90%;
+      font-size: 16px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      background-color: #e65c00;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    .result {
+      margin-top: 20px;
+      font-size: 18px;
+    }
+
+    footer {
+      margin-top: 20px;
+      font-size: 12px;
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img src="LOGO.jpg" alt="Logo SMA 2 Magetan" class="logo" />
+    <h1>Pengumuman Kelulusan<br>2025</h1>
+    <p>Masukkan NIS Anda untuk melihat hasil</p>
+    <input type="text" id="nisnInput" placeholder="Contoh: 1234567890" />
+    <button onclick="cekKelulusan()">Cek Kelulusan</button>
+    <div class="result" id="hasil"></div>
+    <footer>© SMA Negeri 2 Magetan 2025</footer>
+  </div>
+
+  <script>
+    const dataKelulusan = {
+      "11444": { nama: "AHMAD FATHONI KHOIRULLAH", status: "SELAMAT ANDA LULUS" },
+"11451": { nama: "AINA ETHA FITRI", status: "SELAMAT ANDA LULUS" },
+"11456": { nama: "ALFIAN RIZAL TRI ANDIKA", status: "SELAMAT ANDA LULUS" },
+"11468": { nama: "ANNISA IZZAH KAMILAH", status: "SELAMAT ANDA LULUS" },
+"11470": { nama: "ARDIYANSYAH GANANG PRATAMA", status: "SELAMAT ANDA LULUS" },
+"11471": { nama: "ARRIJAL AL ATSMAN", status: "SELAMAT ANDA LULUS" },
+"11477": { nama: "AULYA ZAHRA TITANIA", status: "SELAMAT ANDA LULUS" },
+"11486": { nama: "BILQIS RISKA AGUSTINA", status: "SELAMAT ANDA LULUS" },
+"11495": { nama: "CARISTA AMILIA PUTRI", status: "SELAMAT ANDA LULUS" },
+"11496": { nama: "CELSY NORA AZZAHRA", status: "SELAMAT ANDA LULUS" },
+"11505": { nama: "DEA RISTI WAHYUNINGTYAS", status: "SELAMAT ANDA LULUS" },
+"11517": { nama: "DHINI NADIA PRATIWI DAU LONGBUNG", status: "SELAMAT ANDA LULUS" },
+"11518": { nama: "DIAH AYU LESTARI", status: "SELAMAT ANDA LULUS" },
+"11521": { nama: "DIMAS ADI PANGLIMA", status: "SELAMAT ANDA LULUS" },
+"11527": { nama: "DIOVANNY DIAZ ERLANGGA", status: "SELAMAT ANDA LULUS" },
+"11529": { nama: "DITA ZULFA MUSTIKA", status: "SELAMAT ANDA LULUS" },
+"11536": { nama: "DWI RATNA MUSTIKASARI", status: "SELAMAT ANDA LULUS" },
+"11551": { nama: "FARHAN DHIYA' ATHALLAH", status: "SELAMAT ANDA LULUS" },
+"11557": { nama: "FATMA DWI NAFILA CHARFUANSYAH", status: "SELAMAT ANDA LULUS" },
+"11563": { nama: "FERISKA CITRA AGNALIA", status: "SELAMAT ANDA LULUS" },
+"11564": { nama: "FIDELA VONY RIHADATUL A'ISY", status: "SELAMAT ANDA LULUS" },
+"11571": { nama: "GALUH WILUJENG", status: "SELAMAT ANDA LULUS" },
+"11574": { nama: "GEFIRA AISYANA SYAFITRI", status: "SELAMAT ANDA LULUS" },
+"11583": { nama: "IKHWAN NUR IZZA", status: "SELAMAT ANDA LULUS" },
+"11584": { nama: "ILMA SEPTYAN SUKMA NINGTIAR", status: "SELAMAT ANDA LULUS" },
+"11606": { nama: "KRESNA RASTRA SEWAKOTTAMA", status: "SELAMAT ANDA LULUS" },
+"11610": { nama: "LEONA ARIES VIRGINA PUTRI", status: "SELAMAT ANDA LULUS" },
+"11629": { nama: "MONICA VELIA DWI PRAMESTA", status: "SELAMAT ANDA LULUS" },
+"11633": { nama: "MUHAMMAD ALI YUSUF WULANSARI", status: "SELAMAT ANDA LULUS" },
+"11655": { nama: "NADYA TSAABITA NISA RAYYANI", status: "SELAMAT ANDA LULUS" },
+"11667": { nama: "NAVA AULIA AZAHRA", status: "SELAMAT ANDA LULUS" },
+"11785": { nama: "NISRINA RAFIFAH 'AISY HANDAYANI", status: "SELAMAT ANDA LULUS" },
+"11720": { nama: "RIZKIKA WILDATUL ULAH", status: "SELAMAT ANDA LULUS" },
+"11737": { nama: "SAHDAN EFTIAN", status: "SELAMAT ANDA LULUS" },
+"11748": { nama: "SETYA BAYU SHUBKHI", status: "SELAMAT ANDA LULUS" },
+"11462": { nama: "ANDIEN NAGHYSTA GABRYERA", status: "SELAMAT ANDA LULUS" },
+"11465": { nama: "ANDY AHMAD BIMA YUDHISTIRA", status: "SELAMAT ANDA LULUS" },
+"11498": { nama: "CHINDY FALISTA NUR KHASANAH", status: "SELAMAT ANDA LULUS" },
+"11500": { nama: "CHRYSILLA APRILIA DWI PUTRI SUDIANTO", status: "SELAMAT ANDA LULUS" },
+"11507": { nama: "DEFIRA EKA NURLAILI", status: "SELAMAT ANDA LULUS" },
+"11516": { nama: "DHINA SETYANING CAHYA", status: "SELAMAT ANDA LULUS" },
+"11535": { nama: "DWI MUFTIKATIN", status: "SELAMAT ANDA LULUS" },
+"11537": { nama: "DZAKIYATUL ABDILLAH AYU NUR HARITS", status: "SELAMAT ANDA LULUS" },
+"11540": { nama: "ELINO REYNOVKHA ERNANDA RIFA'I", status: "SELAMAT ANDA LULUS" },
+"11546": { nama: "FA'IZ MAHAPUTRA CHRISNA", status: "SELAMAT ANDA LULUS" },
+"11555": { nama: "FARRA AMELIA SUSANTI", status: "SELAMAT ANDA LULUS" },
+"11558": { nama: "FATWA ATHAYA YUMNA RAMADHANI", status: "SELAMAT ANDA LULUS" },
+"11565": { nama: "FIFIN SYAFANI ANIFAH", status: "SELAMAT ANDA LULUS" },
+"11567": { nama: "FITA MAYA KUSUMA WARDANI", status: "SELAMAT ANDA LULUS" },
+"11569": { nama: "FLORANITA AZIZAH", status: "SELAMAT ANDA LULUS" },
+"11570": { nama: "FRISKA NUR SAGITA", status: "SELAMAT ANDA LULUS" },
+"11585": { nama: "IMAM FAUZI", status: "SELAMAT ANDA LULUS" },
+"11590": { nama: "IRFAN ARBIAN NOVARIYO", status: "SELAMAT ANDA LULUS" },
+"11594": { nama: "JESSICA OKTAVIA RAMADHANI", status: "SELAMAT ANDA LULUS" },
+"11595": { nama: "JESSITA AULYA PUTRI", status: "SELAMAT ANDA LULUS" },
+"11600": { nama: "KAMAL FIKRI WIJAYA", status: "SELAMAT ANDA LULUS" },
+"11636": { nama: "MUHAMMAD BINTANG FAJAR RINO", status: "SELAMAT ANDA LULUS" },
+"11659": { nama: "NANDA YUNITA AULIA RAHMAWATI", status: "SELAMAT ANDA LULUS" },
+"11666": { nama: "NAUTICHA DHIDA HANAMAURA", status: "SELAMAT ANDA LULUS" },
+"11678": { nama: "NOFA FITRI OKTAVIA", status: "SELAMAT ANDA LULUS" },
+"11681": { nama: "NUR BETI ANGGRAINI", status: "SELAMAT ANDA LULUS" },
+"11690": { nama: "QOTRUNNADA QURRATUAINAZAH HAKIM", status: "SELAMAT ANDA LULUS" },
+"11723": { nama: "RIZKI JANUAR INSANI", status: "SELAMAT ANDA LULUS" },
+"11724": { nama: "ROBBY SEPTYA PUTRA WIJAYANTO", status: "SELAMAT ANDA LULUS" },
+"11726": { nama: "ROBY KURNIAWAN", status: "SELAMAT ANDA LULUS" },
+"11732": { nama: "SABILA RAHMA AULIA", status: "SELAMAT ANDA LULUS" },
+"11758": { nama: "SULUS WAHYU PERTIWI", status: "SELAMAT ANDA LULUS" },
+"11763": { nama: "TATA TRI ADITYA", status: "SELAMAT ANDA LULUS" },
+"11765": { nama: "TEGAR RIDHO PRASOJO", status: "SELAMAT ANDA LULUS" },
+"11766": { nama: "TIARA RISKI DWI NINGTIYAS", status: "SELAMAT ANDA LULUS" },
+"11771": { nama: "VAREL MUHAMMAD FAUDZAN", status: "SELAMAT ANDA LULUS" },
+"11438": { nama: "ADELLIA DESTA ZAHIRA", status: "SELAMAT ANDA LULUS" },
+"11442": { nama: "AGISTA DWI KRISVANTO", status: "SELAMAT ANDA LULUS" },
+"11467": { nama: "ANNISA INTAN NUR RAMADHANI", status: "SELAMAT ANDA LULUS" },
+"11469": { nama: "ARDHYA REVALINA OCTARINDRA", status: "SELAMAT ANDA LULUS" },
+"11482": { nama: "BAYU ANGGORO MUKTI", status: "SELAMAT ANDA LULUS" },
+"11491": { nama: "BUNGA ZHIFA'UL MAYZAHRA", status: "SELAMAT ANDA LULUS" },
+"11511": { nama: "DEVI PUSPITA SARI", status: "SELAMAT ANDA LULUS" },
+"11515": { nama: "DHEVANANDA MEIZA YOLLA PERMANA", status: "SELAMAT ANDA LULUS" },
+"11519": { nama: "DIANA NOVITASARI", status: "SELAMAT ANDA LULUS" },
+"11556": { nama: "FARRELIA PUTRI KHOIRUN NISA'", status: "SELAMAT ANDA LULUS" },
+"11568": { nama: "FITRA LADIANTA", status: "SELAMAT ANDA LULUS" },
+"11580": { nama: "HILLYANA PUTRI NAVITA", status: "SELAMAT ANDA LULUS" },
+"11587": { nama: "IMANUEL OKTAVIAN DAMARA SULO", status: "SELAMAT ANDA LULUS" },
+"11604": { nama: "KHOFIFAH SEPTIA RAHMADANI", status: "SELAMAT ANDA LULUS" },
+"11611": { nama: "LERINA DWI SALIANTI", status: "SELAMAT ANDA LULUS" },
+"11612": { nama: "LEVINA ATIKA KUMALASARI", status: "SELAMAT ANDA LULUS" },
+"11615": { nama: "MAHENDRA GESANG PUTRA SATUHU", status: "SELAMAT ANDA LULUS" },
+"11618": { nama: "MARLENA OKTAVIANA", status: "SELAMAT ANDA LULUS" },
+"11621": { nama: "MAULIDA RAHMA AULIA", status: "SELAMAT ANDA LULUS" },
+"11632": { nama: "MUHAMMAD ALFI ABDURROHMAN", status: "SELAMAT ANDA LULUS" },
+"11637": { nama: "MUHAMMAD FAIZ ABIEM ARRIZQI", status: "SELAMAT ANDA LULUS" },
+"11639": { nama: "MUHAMMAD HABIB SULTON", status: "SELAMAT ANDA LULUS" },
+"11640": { nama: "MUHAMMAD HANUNG HAKIIM", status: "SELAMAT ANDA LULUS" },
+"11786": { nama: "MUHAMMAD RAFLY", status: "SELAMAT ANDA LULUS" },
+"11648": { nama: "NABILA GHAIDA SILMI SUTRISNO", status: "SELAMAT ANDA LULUS" },
+"11656": { nama: "NAGITA SALSA JULITA", status: "SELAMAT ANDA LULUS" },
+"11677": { nama: "NINDA ARYANA", status: "SELAMAT ANDA LULUS" },
+"11684": { nama: "OKTAFIA RAMADHANI SANYOTO", status: "SELAMAT ANDA LULUS" },
+"11742": { nama: "SANDHI BIMA NURSILA SAKTI", status: "SELAMAT ANDA LULUS" },
+"11749": { nama: "SHAFA PUTRI HASANAH", status: "SELAMAT ANDA LULUS" },
+"11773": { nama: "VIGO ANDARU FIRDAUS", status: "SELAMAT ANDA LULUS" },
+"11777": { nama: "YOLANDA ASTRID CELANNY", status: "SELAMAT ANDA LULUS" },
+"11780": { nama: "YUSUF SHELEN DERY WIJAYA", status: "SELAMAT ANDA LULUS" },
+"11781": { nama: "ZAHRA SHELA NOVERIVESA", status: "SELAMAT ANDA LULUS" },
+"11783": { nama: "ZHAKY RHAMA ADHITYA", status: "SELAMAT ANDA LULUS" },
+"11452": { nama: "AIRYN SITI MUJIATUL QOMARIA", status: "SELAMAT ANDA LULUS" },
+"11455": { nama: "ALFAIRUS RIZKYANA PUTRI", status: "SELAMAT ANDA LULUS" },
+"11478": { nama: "AUREVA SYAKILA RASHNA", status: "SELAMAT ANDA LULUS" },
+"11501": { nama: "DAFFA DWI ARDIAN", status: "SELAMAT ANDA LULUS" },
+"11711": { nama: "DELA NOVITA SARI", status: "SELAMAT ANDA LULUS" },
+"11513": { nama: "DEWI SAFITRI", status: "SELAMAT ANDA LULUS" },
+"11526": { nama: "DINI ROHMAWATI", status: "SELAMAT ANDA LULUS" },
+"11544": { nama: "ESTIANTI NININGS ASSYIFA", status: "SELAMAT ANDA LULUS" },
+"11545": { nama: "FACHRI MUHAMMAD TRI NUGROHO", status: "SELAMAT ANDA LULUS" },
+"11554": { nama: "FARIZAL DWI SYAPUTRA", status: "SELAMAT ANDA LULUS" },
+"11559": { nama: "FAUZAN AJI ABRISAM", status: "SELAMAT ANDA LULUS" },
+"11560": { nama: "FERA PUTRI KRISTIANA", status: "SELAMAT ANDA LULUS" },
+"11588": { nama: "IQBAD DWI RAJASA", status: "SELAMAT ANDA LULUS" },
+"11602": { nama: "KHAMDHANI ALFAN RAHMAT SYAPUTRA", status: "SELAMAT ANDA LULUS" },
+"11605": { nama: "KHOIRUL ANAM", status: "SELAMAT ANDA LULUS" },
+"11607": { nama: "LADYANA KUNTARTI", status: "SELAMAT ANDA LULUS" },
+"11614": { nama: "LUCKY SAMUDRA AURATAMA", status: "SELAMAT ANDA LULUS" },
+"11624": { nama: "METHA AYU KIRANI", status: "SELAMAT ANDA LULUS" },
+"11628": { nama: "MOHAMAD ZULFIKAR ELSHIRAZY PUTRA YUDA", status: "SELAMAT ANDA LULUS" },
+"11631": { nama: "MUHAMAD RIDWAN NURSYAKBAN", status: "SELAMAT ANDA LULUS" },
+"11634": { nama: "MUHAMMAD AL-RISYAD PUTRA BAKHTIAR", status: "SELAMAT ANDA LULUS" },
+"11652": { nama: "NADHIFAH SYAHLA' ALMARDHIYAH", status: "SELAMAT ANDA LULUS" },
+"11673": { nama: "NAZWA MAULA PUTRI NURDHANA", status: "SELAMAT ANDA LULUS" },
+"11674": { nama: "NEYSHA MARSAURA ARDYAWAN", status: "SELAMAT ANDA LULUS" },
+"11693": { nama: "RAFI ATHA IRSYAD ARIEAN", status: "SELAMAT ANDA LULUS" },
+"11694": { nama: "RAFI RIZQUL ATHALLAH", status: "SELAMAT ANDA LULUS" },
+"11696": { nama: "RAFLI BACHTIAR NUGRAHA", status: "SELAMAT ANDA LULUS" },
+"11704": { nama: "RAYHAN DZAKIY FADHILAH", status: "SELAMAT ANDA LULUS" },
+"11709": { nama: "RESTY SETIA HATI", status: "SELAMAT ANDA LULUS" },
+"11718": { nama: "RIHHADATUL 'AISY NURIMANIAH", status: "SELAMAT ANDA LULUS" },
+"11747": { nama: "SEPTI ENDAH RAMADHANI", status: "SELAMAT ANDA LULUS" },
+"11752": { nama: "SHINDY PATRIANA AGUSTINE", status: "SELAMAT ANDA LULUS" },
+"11757": { nama: "SUCI RAMADHANI", status: "SELAMAT ANDA LULUS" },
+"11759": { nama: "SURYAHADI PURNAMA", status: "SELAMAT ANDA LULUS" },
+"11762": { nama: "TARA SAHDA FADHLIKA", status: "SELAMAT ANDA LULUS" },
+"11767": { nama: "TIKA AMELIA PUTRI", status: "SELAMAT ANDA LULUS" },
+"11435": { nama: "ABID DWIKI MUAMAR", status: "SELAMAT ANDA LULUS" },
+"11436": { nama: "ADELIA AYU PUTRIANASARI", status: "SELAMAT ANDA LULUS" },
+"11449": { nama: "AHYA RIJAL HAVIF ALFAUSAN", status: "SELAMAT ANDA LULUS" },
+"11463": { nama: "ANDRA BHIRAWA ANORAGA", status: "SELAMAT ANDA LULUS" },
+"11472": { nama: "ARSINTA MAHARANI", status: "SELAMAT ANDA LULUS" },
+"11473": { nama: "ARWA JIWA ZHASKYA FANY", status: "SELAMAT ANDA LULUS" },
+"11481": { nama: "BAGUS REYHAN PUTRA SEJATI", status: "SELAMAT ANDA LULUS" },
+"11488": { nama: "BISMA AMA DESTA MAGATA", status: "SELAMAT ANDA LULUS" },
+"11493": { nama: "CALISTA ZERRA FAHARDYAN", status: "SELAMAT ANDA LULUS" },
+"11499": { nama: "CHRISTYA AYUDHYA RAMADHANI", status: "SELAMAT ANDA LULUS" },
+"11508": { nama: "DEHYA ALQOLBI ABDILLAH", status: "SELAMAT ANDA LULUS" },
+"11510": { nama: "DEVI LINTANG ARDINI", status: "SELAMAT ANDA LULUS" },
+"11525": { nama: "DINDA AISYAH ARIFAINI", status: "SELAMAT ANDA LULUS" },
+"11533": { nama: "DONA ILMITA PUTRI", status: "SELAMAT ANDA LULUS" },
+"11538": { nama: "EDELWEIS VITTO BRATA IRAWAN", status: "SELAMAT ANDA LULUS" },
+"11549": { nama: "FAIZIN PANDU GUMILANG", status: "SELAMAT ANDA LULUS" },
+"11553": { nama: "FARIS ZAHRAAN BAHTIAR", status: "SELAMAT ANDA LULUS" },
+"11572": { nama: "GARINSA VIDYA FARELLITA", status: "SELAMAT ANDA LULUS" },
+"11579": { nama: "HAFIZH FAWAZ GHAZALI", status: "SELAMAT ANDA LULUS" },
+"11596": { nama: "JOHAN RAFFAEL SIREGAR", status: "SELAMAT ANDA LULUS" },
+"11597": { nama: "JOVITA BELVANA BHIROWO", status: "SELAMAT ANDA LULUS" },
+"11625": { nama: "MHEGA RISKU PUTRI", status: "SELAMAT ANDA LULUS" },
+"11646": { nama: "MYCELLIA HAQUEEN NISA", status: "SELAMAT ANDA LULUS" },
+"11661": { nama: "NASHWA PUTRI AULIA", status: "SELAMAT ANDA LULUS" },
+"11665": { nama: "NAURA TAMA YULINAR", status: "SELAMAT ANDA LULUS" },
+"11707": { nama: "REMBULAN PUSPA MILANTI", status: "SELAMAT ANDA LULUS" },
+"11713": { nama: "RHESA DERIAN EARLY", status: "SELAMAT ANDA LULUS" },
+"11715": { nama: "RIANGKASONYA ATIVOLITA", status: "SELAMAT ANDA LULUS" },
+"11717": { nama: "RICHARD STIFEN FAHRIZAL BUDIANTO", status: "SELAMAT ANDA LULUS" },
+"11721": { nama: "RISQY MULIANA ROMADHONI", status: "SELAMAT ANDA LULUS" },
+"11738": { nama: "SAKTIAWAN DWI PERMANA", status: "SELAMAT ANDA LULUS" },
+"11740": { nama: "SALWA RASYA ARI MAYSA", status: "SELAMAT ANDA LULUS" },
+"11751": { nama: "SHERLIANA PUTRI NURAINI", status: "SELAMAT ANDA LULUS" },
+"11754": { nama: "SHIVANETA AURELYA YUSTANTI", status: "SELAMAT ANDA LULUS" },
+"11769": { nama: "TSINTANI ROYAHINUL JANNAH", status: "SELAMAT ANDA LULUS" },
+"11775": { nama: "VLERENCIA AGATHA SILOAM", status: "SELAMAT ANDA LULUS" },
+"11441": { nama: "AFRIZAL DWI HANDIKA RIVA'I", status: "SELAMAT ANDA LULUS" },
+"11448": { nama: "AHWATUL WAFDAH", status: "SELAMAT ANDA LULUS" },
+"11460": { nama: "ANABELLA ELVINA APTA ADI DHARMA", status: "SELAMAT ANDA LULUS" },
+"11466": { nama: "ANGGITA CAHYANING YUGI", status: "SELAMAT ANDA LULUS" },
+"11475": { nama: "AULIA TRIE ABDINI PUNDILARAS", status: "SELAMAT ANDA LULUS" },
+"11476": { nama: "AULIYHA ARCHIKA DEVI", status: "SELAMAT ANDA LULUS" },
+"11479": { nama: "AVANDRA PRATAMA PUTRA", status: "SELAMAT ANDA LULUS" },
+"11490": { nama: "BUNGA AYU RAFELINDA", status: "SELAMAT ANDA LULUS" },
+"11502": { nama: "DAFFANY RACHELIA IRENE KOMALARATIH", status: "SELAMAT ANDA LULUS" },
+"11503": { nama: "DANI DARMAWAN", status: "SELAMAT ANDA LULUS" },
+"11512": { nama: "DEWI HILYATUS SHOLIHAH", status: "SELAMAT ANDA LULUS" },
+"11514": { nama: "DHEA APRILIANA CAHYA DWI PRATIWI", status: "SELAMAT ANDA LULUS" },
+"11541": { nama: "ELIZABETH SHALOMITHA SINULINGGA", status: "SELAMAT ANDA LULUS" },
+"11542": { nama: "ERDI HABIB SYAHPUTRA", status: "SELAMAT ANDA LULUS" },
+"11543": { nama: "ERICO CHRISTIAN WIJOYONO", status: "SELAMAT ANDA LULUS" },
+"11550": { nama: "FANDYA PUTRA MAULANA", status: "SELAMAT ANDA LULUS" },
+"11608": { nama: "LALITA NUR RAHMA", status: "SELAMAT ANDA LULUS" },
+"11643": { nama: "MUHAMMAD NASRUL MUZAKI", status: "SELAMAT ANDA LULUS" },
+"11663": { nama: "NATHASYA SHALSABILA PUTRI AZHARI", status: "SELAMAT ANDA LULUS" },
+"11702": { nama: "RASYA FIRMANSYAH", status: "SELAMAT ANDA LULUS" },
+"11710": { nama: "RETNAYU DEWI SUMINAR", status: "SELAMAT ANDA LULUS" },
+"11725": { nama: "ROBI WIJAYANTO", status: "SELAMAT ANDA LULUS" },
+"11727": { nama: "ROHMAT ZULFA ASNGARI", status: "SELAMAT ANDA LULUS" },
+"11728": { nama: "ROIS ZUHUD JADID", status: "SELAMAT ANDA LULUS" },
+"11733": { nama: "SABRINA AZZAHRA AZZIZATUS ARSY", status: "SELAMAT ANDA LULUS" },
+"11734": { nama: "SABRINA DWI NUR RAMADHANI", status: "SELAMAT ANDA LULUS" },
+"11739": { nama: "SALMA ZHAFIRA PUTRI HANDAYANI", status: "SELAMAT ANDA LULUS" },
+"11750": { nama: "SHENDY RAISSA FERNANDO", status: "SELAMAT ANDA LULUS" },
+"11753": { nama: "SHIVA AULYA AJENG OCHTAVIOLA", status: "SELAMAT ANDA LULUS" },
+"11760": { nama: "SYAIFA TITA AGESTI", status: "SELAMAT ANDA LULUS" },
+"11764": { nama: "TATAG GANGSAR PINILIH", status: "SELAMAT ANDA LULUS" },
+"11770": { nama: "VALENTA NADHEA AULINZA PUTRI", status: "SELAMAT ANDA LULUS" },
+"11772": { nama: "VERBENA FARIKA ALYAPUTRI", status: "SELAMAT ANDA LULUS" },
+"11776": { nama: "WAHYU KUSUMA PUTRA", status: "SELAMAT ANDA LULUS" },
+"11434": { nama: "A'AN DEWO PRAKOSO SUKARNO PUTRO", status: "SELAMAT ANDA LULUS" },
+"11447": { nama: "AHSAN FAQIHUDDIN", status: "SELAMAT ANDA LULUS" },
+"11457": { nama: "ALFIANDRA WAHYU CESA PRATAMA", status: "SELAMAT ANDA LULUS" },
+"11458": { nama: "ALFIN NUR HIDAYAT", status: "SELAMAT ANDA LULUS" },
+"11459": { nama: "AMANDA MAI SAPUTRI", status: "SELAMAT ANDA LULUS" },
+"11461": { nama: "ANDIANIKA FAUZAN ADINUGROHO", status: "SELAMAT ANDA LULUS" },
+"11464": { nama: "ANDREA LUTHFI LITUHAYU", status: "SELAMAT ANDA LULUS" },
+"11474": { nama: "ARYZA SAVILLA EKA WIBOWO", status: "SELAMAT ANDA LULUS" },
+"11531": { nama: "DIVA NUR AYUNI RAMADHANI", status: "SELAMAT ANDA LULUS" },
+"11532": { nama: "DOFAN ZAKIYAN CAHYA PRANATA", status: "SELAMAT ANDA LULUS" },
+"11548": { nama: "FAIZAL FATHIN WISNU AJI", status: "SELAMAT ANDA LULUS" },
+"11573": { nama: "GAVIN DIMAS KAIANA", status: "SELAMAT ANDA LULUS" },
+"11578": { nama: "GUNTUR RIZKI ARASID", status: "SELAMAT ANDA LULUS" },
+"11581": { nama: "IDA FITRIYA", status: "SELAMAT ANDA LULUS" },
+"11591": { nama: "IRFAN NURWAWI", status: "SELAMAT ANDA LULUS" },
+"11592": { nama: "IRGI PERMANA VALENTINE", status: "SELAMAT ANDA LULUS" },
+"11649": { nama: "NABILA KURNIA NURHAINI", status: "SELAMAT ANDA LULUS" },
+"11658": { nama: "NAJWA SEPTIA RAHMASARI", status: "SELAMAT ANDA LULUS" },
+"11660": { nama: "NAOMI AIKO QUARENT", status: "SELAMAT ANDA LULUS" },
+"11675": { nama: "NICKY ANDRIYA SAPUTRA", status: "SELAMAT ANDA LULUS" },
+"11682": { nama: "OCASYA EARLY ANDIRA", status: "SELAMAT ANDA LULUS" },
+"11688": { nama: "PUTRA IDAM LAKSANA", status: "SELAMAT ANDA LULUS" },
+"11691": { nama: "RACHIELONA TIARA AUGESTHA", status: "SELAMAT ANDA LULUS" },
+"11692": { nama: "RAFA FIREZA ENDARTO", status: "SELAMAT ANDA LULUS" },
+"11699": { nama: "RAHMA MURTAFI' MAGFIROH", status: "SELAMAT ANDA LULUS" },
+"11714": { nama: "RIAN AHMAD RAMADHANI", status: "SELAMAT ANDA LULUS" },
+"11719": { nama: "RIMA DAMAYANTI", status: "SELAMAT ANDA LULUS" },
+"11730": { nama: "RUDOLF HORACIO MULIAMAN FRANCESCO. T", status: "SELAMAT ANDA LULUS" },
+"11741": { nama: "SALWA ROSYIDATUL FADZILA", status: "SELAMAT ANDA LULUS" },
+"11743": { nama: "SANIA INTAN PERMATASARI", status: "SELAMAT ANDA LULUS" },
+"11761": { nama: "SYAVIRRA PUTRI RAHMADHANI", status: "SELAMAT ANDA LULUS" },
+"11768": { nama: "TONY NUR ROCHMAN", status: "SELAMAT ANDA LULUS" },
+"11774": { nama: "VITO JULIAN PRIA FINANTA", status: "SELAMAT ANDA LULUS" },
+"11778": { nama: "YUKI RAHMADINATA", status: "SELAMAT ANDA LULUS" },
+"11439": { nama: "ADHYAKSA DWI SATRYA PUTRA", status: "SELAMAT ANDA LULUS" },
+"11443": { nama: "AGNAR FIIL MAHASWARA", status: "SELAMAT ANDA LULUS" },
+"11445": { nama: "AHMAD HENRY NASHOHA", status: "SELAMAT ANDA LULUS" },
+"11484": { nama: "BHADRA OGYA RANUPATMA", status: "SELAMAT ANDA LULUS" },
+"11504": { nama: "DANY KURNIAWAN", status: "SELAMAT ANDA LULUS" },
+"11509": { nama: "DESTA OLIVIA SUBAGYO", status: "SELAMAT ANDA LULUS" },
+"11522": { nama: "DIMAS ARYA FADILAH", status: "SELAMAT ANDA LULUS" },
+"11547": { nama: "FAIZA ARLEA REGITA", status: "SELAMAT ANDA LULUS" },
+"11552": { nama: "FARHAN NUR ASLAM", status: "SELAMAT ANDA LULUS" },
+"11601": { nama: "KEVIN TYO PRASETYO", status: "SELAMAT ANDA LULUS" },
+"11603": { nama: "KHEISYA PRIONORA", status: "SELAMAT ANDA LULUS" },
+"11613": { nama: "LINGGA AHMAD MAULANA", status: "SELAMAT ANDA LULUS" },
+"11616": { nama: "MAHESYA FIRDHA AL-KAUTSAR", status: "SELAMAT ANDA LULUS" },
+"11617": { nama: "MANGGAR WENGI CAHYANING REDISTA", status: "SELAMAT ANDA LULUS" },
+"11619": { nama: "MAUDI APRILIA PUTRI", status: "SELAMAT ANDA LULUS" },
+"11622": { nama: "MAYA ALDINA APRELIA NURCAHYANI", status: "SELAMAT ANDA LULUS" },
+"11623": { nama: "MERIC SANDY KURNIAWAN", status: "SELAMAT ANDA LULUS" },
+"11626": { nama: "MOCHAMAD BINTANG SYACHPUTRA KRISTANDA", status: "SELAMAT ANDA LULUS" },
+"11627": { nama: "MOCHAMAD RYANSYAH PUTRA BAHARI", status: "SELAMAT ANDA LULUS" },
+"11635": { nama: "MUHAMMAD ALWA TEUKU ARTHA", status: "SELAMAT ANDA LULUS" },
+"11641": { nama: "MUHAMMAD IRSYAD AHNAFI", status: "SELAMAT ANDA LULUS" },
+"11650": { nama: "NABILA NUR TSABITA", status: "SELAMAT ANDA LULUS" },
+"11651": { nama: "NABILLA NOVIZA LEA NANDA", status: "SELAMAT ANDA LULUS" },
+"11657": { nama: "NAJWA AZZAHRA CHOIRUNISSA", status: "SELAMAT ANDA LULUS" },
+"11664": { nama: "NAUFAL ARIFAH PRATAMA", status: "SELAMAT ANDA LULUS" },
+"11668": { nama: "NAWANG PUTRA ALEMBANA", status: "SELAMAT ANDA LULUS" },
+"11670": { nama: "NAYAZEA CLEO ELVARETTA", status: "SELAMAT ANDA LULUS" },
+"11680": { nama: "NOVI ANNASTASYA PUTRI MARWOKO", status: "SELAMAT ANDA LULUS" },
+"11689": { nama: "QOTIFAH HILMI CAHYA NOVIANA", status: "SELAMAT ANDA LULUS" },
+"11700": { nama: "RANGGA MARTHA TRI NUGRAHA", status: "SELAMAT ANDA LULUS" },
+"11701": { nama: "RASYA AHMAD ALFARO", status: "SELAMAT ANDA LULUS" },
+"11705": { nama: "REFA DIANA ANGGRAENI", status: "SELAMAT ANDA LULUS" },
+"11729": { nama: "ROSYIDAN ZAHYA ATMAWISETA", status: "SELAMAT ANDA LULUS" },
+"11731": { nama: "RUHIYANATUL YASMIN MUNTAS", status: "SELAMAT ANDA LULUS" },
+"11437": { nama: "ADELLA AKNE PRIMADANY", status: "SELAMAT ANDA LULUS" },
+"11446": { nama: "AHMAD ROBBI NURCAHYO", status: "SELAMAT ANDA LULUS" },
+"11454": { nama: "AJENG YULIA SULISTIYO", status: "SELAMAT ANDA LULUS" },
+"11487": { nama: "BIMO ABIMANYU", status: "SELAMAT ANDA LULUS" },
+"11528": { nama: "DISTA AUREL MAY SALLY", status: "SELAMAT ANDA LULUS" },
+"11534": { nama: "DWI APRILIANSYAH", status: "SELAMAT ANDA LULUS" },
+"11561": { nama: "FERDIAN ARIZKI", status: "SELAMAT ANDA LULUS" },
+"11562": { nama: "FERDIAN CANDRANUWITA", status: "SELAMAT ANDA LULUS" },
+"11576": { nama: "GILANG JULY ANANTA", status: "SELAMAT ANDA LULUS" },
+"11577": { nama: "GILANG PAWANA", status: "SELAMAT ANDA LULUS" },
+"11582": { nama: "IHSAN RAMAYUDHA", status: "SELAMAT ANDA LULUS" },
+"11586": { nama: "IMAN FITRONI", status: "SELAMAT ANDA LULUS" },
+"11589": { nama: "IRENGGA DANI PREMANA", status: "SELAMAT ANDA LULUS" },
+"11598": { nama: "JULIO ELDHA SATRIATAMA", status: "SELAMAT ANDA LULUS" },
+"11630": { nama: "MUCHAMAD RIZKY AFRIANANTA", status: "SELAMAT ANDA LULUS" },
+"11638": { nama: "MUHAMMAD GIGIH ANASTRI", status: "SELAMAT ANDA LULUS" },
+"11642": { nama: "MUHAMMAD KHOIRUL IQBAL", status: "SELAMAT ANDA LULUS" },
+"11644": { nama: "MUHAMMAD NOVAN ARYA EKA PRATAMA", status: "SELAMAT ANDA LULUS" },
+"11647": { nama: "NABILA ANANTA RAMADHANI", status: "SELAMAT ANDA LULUS" },
+"11654": { nama: "NADYA AULIA KARIM", status: "SELAMAT ANDA LULUS" },
+"11662": { nama: "NASYWA ATHA ZAYYAN DANISWARA", status: "SELAMAT ANDA LULUS" },
+"11669": { nama: "NAYA KHOIRI SYANI", status: "SELAMAT ANDA LULUS" },
+"11672": { nama: "NAYSHA ARDHANY", status: "SELAMAT ANDA LULUS" },
+"11685": { nama: "PANDU RIZKY ANANDA SAPUTRA", status: "SELAMAT ANDA LULUS" },
+"11698": { nama: "RAFLI SIROJUDDIN SYAHSAH ZAINUL MUTTAQIN", status: "SELAMAT ANDA LULUS" },
+"11706": { nama: "RELYA PALUPI AGRAFI", status: "SELAMAT ANDA LULUS" },
+"11708": { nama: "RESTU LUCKY SYAHPUTRA", status: "SELAMAT ANDA LULUS" },
+"11712": { nama: "REVANIA MELISA EFENDI", status: "SELAMAT ANDA LULUS" },
+"11716": { nama: "RIBUT PAMBUDI UTAMA", status: "SELAMAT ANDA LULUS" },
+"11736": { nama: "SAFA MUTIA NUR ROHMAH", status: "SELAMAT ANDA LULUS" },
+"11745": { nama: "SATRIA SAKTI PUTRA ANDIKA", status: "SELAMAT ANDA LULUS" },
+"11746": { nama: "SELHOMICA TRIUTAMI", status: "SELAMAT ANDA LULUS" },
+"11755": { nama: "SHOFIATUL MUAWANAH", status: "SELAMAT ANDA LULUS" },
+"11779": { nama: "YUSSY KARTIKA SARI", status: "SELAMAT ANDA LULUS" },
+"11450": { nama: "AIFA DWI CAHYA AURANISA", status: "SELAMAT ANDA LULUS" },
+"11480": { nama: "AVRILLA DIAH AYU RAFIQA", status: "SELAMAT ANDA LULUS" },
+"11483": { nama: "BAYU PONCO PRASTOWO", status: "SELAMAT ANDA LULUS" },
+"11485": { nama: "BILQIS AURA MENTARI", status: "SELAMAT ANDA LULUS" },
+"11489": { nama: "BRAMASTIO AJI", status: "SELAMAT ANDA LULUS" },
+"11492": { nama: "BURHANNUDIN JAMIL", status: "SELAMAT ANDA LULUS" },
+"11494": { nama: "CANTIKA ADISTIA PRASTIWI", status: "SELAMAT ANDA LULUS" },
+"11497": { nama: "CHIKA AMELIA KIRANA", status: "SELAMAT ANDA LULUS" },
+"11506": { nama: "DEFINA EKA NURLAILA", status: "SELAMAT ANDA LULUS" },
+"11523": { nama: "DIMAS DWI SAPUTRA", status: "SELAMAT ANDA LULUS" },
+"11530": { nama: "DIVA KHAYLA MAHARANI", status: "SELAMAT ANDA LULUS" },
+"11539": { nama: "EKY SALFA KIRANA", status: "SELAMAT ANDA LULUS" },
+"11566": { nama: "FIRMAN FRATAMA RAHMADHANI", status: "SELAMAT ANDA LULUS" },
+"11575": { nama: "GILANG DWI ANGGARA", status: "SELAMAT ANDA LULUS" },
+"11593": { nama: "JENIV IRSYAD SYAFARUDIN", status: "SELAMAT ANDA LULUS" },
+"11599": { nama: "JULIUS CAESAR", status: "SELAMAT ANDA LULUS" },
+"11609": { nama: "LEO PRATAMA PUTRA ZAHWA", status: "SELAMAT ANDA LULUS" },
+"11645": { nama: "MUHAMMAD ULUNG PURANING RIZKI", status: "SELAMAT ANDA LULUS" },
+"11653": { nama: "NADIA ANGGUN LESTARI", status: "SELAMAT ANDA LULUS" },
+"11671": { nama: "NAYLA PUTRI AZZAHRA", status: "SELAMAT ANDA LULUS" },
+"11676": { nama: "NIMAS SHALICH ALQODRY", status: "SELAMAT ANDA LULUS" },
+"11679": { nama: "NOFFA ANANTA CHELSY PUTRA PAMUNGKAS", status: "SELAMAT ANDA LULUS" },
+"11683": { nama: "OCTAVINA RAMADHANI", status: "SELAMAT ANDA LULUS" },
+"11686": { nama: "PITHO ARYA NUGRAHA SETYADI", status: "SELAMAT ANDA LULUS" },
+"11687": { nama: "PULUNG ACHIR RAMADHAN", status: "SELAMAT ANDA LULUS" },
+"11695": { nama: "RAFISA AGIL PRATAMA", status: "SELAMAT ANDA LULUS" },
+"11697": { nama: "RAFLI NOFI SAPUTRA", status: "SELAMAT ANDA LULUS" },
+"11703": { nama: "RAVAENO JONA VEDRUSA", status: "SELAMAT ANDA LULUS" },
+"11722": { nama: "RISTA DEWI ERLINA SARI", status: "SELAMAT ANDA LULUS" },
+"11735": { nama: "SACHI MARIAM MARCELINA WIBOWO", status: "SELAMAT ANDA LULUS" },
+"11744": { nama: "SANIYA HUSNA FAZA", status: "SELAMAT ANDA LULUS" },
+"11782": { nama: "ZAHWA OKTAVIA", status: "SELAMAT ANDA LULUS" },
+"11784": { nama: "ZUYYIN AULIA ALFIRDAUS", status: "SELAMAT ANDA LULUS" },  
+    };
+
+    function cekKelulusan() {
+      const nisn = document.getElementById("nisnInput").value.trim();
+      const hasilDiv = document.getElementById("hasil");
+      const data = dataKelulusan[nisn];
+
+      if (data) {
+        hasilDiv.innerHTML = `
+          <p>Nama: <strong>${data.nama}</strong></p>
+          <p>Status Kelulusan: <strong style="color: ${data.status === 'SELAMAT ANDA LULUS' ? 'green' : 'red'}">${data.status}</strong></p>
+        `;
+      } else {
+        hasilDiv.innerHTML = "<p style='color: gray;'>Data tidak ditemukan. Periksa kembali NISN Anda.</p>";
+      }
+    }
+  </script>
+</body>
+</html>
